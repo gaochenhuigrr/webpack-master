@@ -6,6 +6,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    devServer: {
+        contentBase: path.join(__dirname, '../dist/'),
+        compress: true,
+        port: 8000
+    },
     entry: {
         main: path.resolve(__dirname, '../src/index.js')
     },
@@ -29,6 +34,21 @@ module.exports = {
                 exclude: [
                     path.resolve(__dirname, '../node_modules')
                 ]
+            },
+            {
+                test: /\.css/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ]
             }
         ]
     },
@@ -42,15 +62,19 @@ module.exports = {
             filename: 'index.html',
             title: 'hmtl webpack plugin title'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
+        alias: {
+            styles: path.resolve(__dirname, '../src/styles/')
+        },
         modules: [
             path.resolve(__dirname, '../src'),
             'node_modules'
         ],
         extensions: [
-            '.js', '.json', '.jsx'
+            '.js', '.json', '.jsx', '.css', '.scss'
         ]
     }
 }

@@ -1,5 +1,4 @@
 - babel
-- sass
 - prefix
 - extracttext
 - common extract
