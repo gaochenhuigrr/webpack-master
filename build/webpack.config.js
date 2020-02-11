@@ -1,6 +1,8 @@
 const webpack = require('webpack')
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -34,7 +36,13 @@ module.exports = {
         new UglifyJsPlugin(),
         new webpack.DefinePlugin({
             THREEDIMENSION: JSON.stringify('THREE BODY')
-        })
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, '../src/index.html'),
+            filename: 'index.html',
+            title: 'hmtl webpack plugin title'
+        }),
+        new CleanWebpackPlugin()
     ],
     resolve: {
         modules: [

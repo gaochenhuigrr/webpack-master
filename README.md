@@ -3,5 +3,4 @@
 - prefix
 - extracttext
 - common extract
-- delete dist
 - hot replacement
