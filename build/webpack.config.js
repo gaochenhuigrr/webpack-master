@@ -6,10 +6,17 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    // 热更新：
+    // 1.安装webpack-dev-server 
+    // 2.打包命令 webpack --> webpack-dev-server
+    // 3.webpack 配置文件中配置 devServer
     devServer: {
         contentBase: path.join(__dirname, '../dist/'),
         compress: true,
-        port: 8000
+        hot: true,
+        port: 8000,
+        // 自动打开浏览器
+        open: true
     },
     entry: {
         main: path.resolve(__dirname, '../src/index.js')
