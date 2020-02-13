@@ -18,7 +18,7 @@ const config = {
         // 自动打开浏览器
         open: true,
         // 显示ccompiler errors or warnings
-        verlay: {
+        overlay: {
             warnings: false,
             errors: true
         }
@@ -33,7 +33,8 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.js/,
+                test: /\.js$/,
+                exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
