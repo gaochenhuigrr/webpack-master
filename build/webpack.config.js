@@ -42,13 +42,13 @@ module.exports = {
                     path.resolve(__dirname, '../node_modules')
                 ]
             },
-            {
-                test: /\.css/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            },
+            // {
+            //     test: /\.css/,
+            //     use: [
+            //         'style-loader',
+            //         'css-loader'
+            //     ]
+            // },
             {
                 test: /.scss$/,
                 use: [
