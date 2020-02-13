@@ -4,7 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = {
+const config = {
     mode: 'development',
     // 热更新：
     // 1.安装webpack-dev-server 
@@ -16,7 +16,12 @@ module.exports = {
         hot: true,
         port: 8000,
         // 自动打开浏览器
-        open: true
+        open: true,
+        // 显示ccompiler errors or warnings
+        verlay: {
+            warnings: false,
+            errors: true
+        }
     },
     entry: {
         main: path.resolve(__dirname, '../src/index.js')
@@ -94,3 +99,5 @@ module.exports = {
         ]
     }
 }
+// 先定义再导出方便更改配置
+module.exports = config
