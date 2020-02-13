@@ -22,7 +22,7 @@ module.exports = {
         main: path.resolve(__dirname, '../src/index.js')
     },
     output: {
-        filename: '[name]-[hash:6].js',
+        filename: 'js/[name]-[hash:6].js',
         path: path.resolve(__dirname, '../dist/')
     },
     module: {
@@ -67,7 +67,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../src/index.html'),
             filename: 'index.html',
-            title: 'hmtl webpack plugin title'
+            title: 'hmtl webpack plugin title',
+            // 打包好的资源注入到html的位置 default: 'body'
+            // true | 'body' body结束标签前
+            // 'head' head结束标签前
+            inject: 'body',
+            // 压缩打包后的html模板文件
+            minify:{
+                removeComments:true,
+                collapseWhitespace:true
+            }
         }),
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin()
