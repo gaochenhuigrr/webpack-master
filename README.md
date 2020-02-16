@@ -1,4 +1,5 @@
-- babel
 - prefix
-- extracttext
+- extract css
 - common extract
+- babel configuration
+

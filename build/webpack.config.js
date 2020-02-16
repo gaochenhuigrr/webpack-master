@@ -48,19 +48,64 @@ const config = {
                     path.resolve(__dirname, '../node_modules')
                 ]
             },
-            // {
-            //     test: /\.css/,
-            //     use: [
-            //         'style-loader',
-            //         'css-loader'
-            //     ]
-            // },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
+            },
+            {
+                test: /\.css/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
             {
                 test: /.scss$/,
                 use: [
                     'style-loader',
                     'css-loader',
                     'sass-loader',
+                ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 40960, 
+                            name: 'images/[name]-[contenthash:6].[ext]'
+                            // webpack3 配置 不适用于webpack4
+                            // fallback: {
+                            //     loader: 'file-loader',
+                            //     options: {
+                            //         name: 'images/[name]-[contenthash:6].[ext]'
+                            //     }
+                            // }
+                        }
+                    },
+                    // {
+                    //     loader: 'image-webpack-loader',
+                    //     options: {
+                    //       mozjpeg: { // 压缩 jpeg 的配置
+                    //         progressive: true,
+                    //         quality: 65
+                    //       },
+                    //       optipng: { // 使用 imagemin-optipng 压缩 png，enable: false 为关闭
+                    //         enabled: false,
+                    //       },
+                    //       pngquant: { // 使用 imagemin-pngquant 压缩 png
+                    //         quality: [0.65, 0.90],
+                    //         speed: 4
+                    //       },
+                    //       gifsicle: { // 压缩 gif 的配置
+                    //         interlaced: false,
+                    //       },
+                    //       webp: { // 开启 webp，会把 jpg 和 png 图片压缩为 webp 格式
+                    //         quality: 75
+                    //       }
+                    //     }
+                    // }
                 ]
             }
         ]
@@ -80,8 +125,11 @@ const config = {
             inject: 'body',
             // 压缩打包后的html模板文件
             minify:{
-                removeComments:true,
-                collapseWhitespace:true
+                minifyCSS: true,
+                minifyJS: true,
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
             }
         }),
         new CleanWebpackPlugin(),
@@ -89,7 +137,8 @@ const config = {
     ],
     resolve: {
         alias: {
-            styles: path.resolve(__dirname, '../src/styles/')
+            styles: path.resolve(__dirname, '../src/styles/'),
+            assets: path.resolve(__dirname, '../src/assets/')
         },
         modules: [
             path.resolve(__dirname, '../src'),
