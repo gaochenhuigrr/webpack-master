@@ -32,7 +32,7 @@ const config = {
         main: path.resolve(__dirname, '../src/index.js')
     },
     output: {
-        filename: 'js/[name]-[hash:8].js',
+        filename: 'js/[name].[hash:8].js',
         path: path.resolve(__dirname, '../dist/')
     },
     module: {
@@ -92,12 +92,12 @@ const config = {
                         loader: 'url-loader',
                         options: {
                             limit: 40960, 
-                            name: 'assets/images/[name]-[contenthash:8].[ext]'
+                            name: 'assets/images/[name].[contenthash:8].[ext]'
                             // webpack3 配置 不适用于webpack4
                             // fallback: {
                             //     loader: 'file-loader',
                             //     options: {
-                            //         name: 'images/[name]-[contenthash:8].[ext]'
+                            //         name: 'images/[name].[contenthash:8].[ext]'
                             //     }
                             // }
                         }
