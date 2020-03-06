@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const config = {
     mode: 'development',
@@ -12,6 +14,7 @@ const config = {
     // 1.安装webpack-dev-server 
     // 2.打包命令 webpack --> webpack-dev-server
     // 3.webpack 配置文件中配置 devServer
+    devtool: 'eval-cheap-module-source-map',
     devServer: {
         contentBase: path.join(__dirname, '../dist/'),
         compress: true,
@@ -37,7 +40,7 @@ const config = {
             {
                 test: /\.js$/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: 'babel-loader?cacheDirectory=true',
                     options: {
                         presets: [ '@babel/preset-env' ]
                     }
@@ -143,17 +146,20 @@ const config = {
             minify:{
                 minifyCSS: true,
                 minifyJS: true,
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true
+                removeComments: true, // 移除注释
+                collapseWhitespace: true, // 折叠空白区域
+                removeAttributeQuotes: true, // 移除属性的引号
+                removeRedundantAttributes: true, // 删除多余的属性
+                collapseBooleanAttributes: true // 省略只有 boolean 值的属性值 例如：readonly checked
             }
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'styles/[name]-[contenthash:8].css',
-            chunkFilename: '[id].css',
+            filename: 'css/[name].[contenthash:8].css',
+            chunkFilename: 'css/[name].[hash].css',
             ignoreOrder: false
         }),
+        new webpack.HashedModuleIdsPlugin(),// 实现持久化缓存
         new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
