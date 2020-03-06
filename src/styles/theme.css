@@ -5,12 +5,13 @@ h1 {
 div {
     width: 200px;
     height: 200px;
-    background-image: url('../assets/big.jpg');
+    background-image: url('../assets/girl.jpg');
+    background-size: cover;
     border-radius: 50%;
     margin: 50px auto;
 }
 
 body {
-    background-image: url('../assets/girl.jpg');
+    background-image: url('../assets/afterglow.jpg');
     background-size: cover;
 }
