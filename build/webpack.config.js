@@ -64,7 +64,8 @@ const config = {
                             hmr: process.env.NODE_ENV === 'development'
                         }
                     },
-                    'css-loader'
+                    'css-loader',
+                    'postcss-loader'
                 ]
             },
             {
@@ -78,6 +79,7 @@ const config = {
                         }
                     },
                     'css-loader',
+                    'postcss-loader',
                     'sass-loader',
                 ]
             },
