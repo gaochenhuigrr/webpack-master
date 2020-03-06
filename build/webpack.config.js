@@ -4,6 +4,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
 const config = {
     mode: 'development',
     // 热更新：
@@ -27,14 +30,13 @@ const config = {
         main: path.resolve(__dirname, '../src/index.js')
     },
     output: {
-        filename: 'js/[name]-[hash:6].js',
+        filename: 'js/[name]-[hash:8].js',
         path: path.resolve(__dirname, '../dist/')
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -55,14 +57,26 @@ const config = {
             {
                 test: /\.css/,
                 use: [
-                    'style-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            esModule: true,
+                            hmr: process.env.NODE_ENV === 'development'
+                        }
+                    },
                     'css-loader'
                 ]
             },
             {
                 test: /.scss$/,
                 use: [
-                    'style-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            esModule: true,
+                            hmr: process.env.NODE_ENV === 'development'
+                        }
+                    },
                     'css-loader',
                     'sass-loader',
                 ]
@@ -74,12 +88,12 @@ const config = {
                         loader: 'url-loader',
                         options: {
                             limit: 40960, 
-                            name: 'images/[name]-[contenthash:6].[ext]'
+                            name: 'assets/images/[name]-[contenthash:8].[ext]'
                             // webpack3 配置 不适用于webpack4
                             // fallback: {
                             //     loader: 'file-loader',
                             //     options: {
-                            //         name: 'images/[name]-[contenthash:6].[ext]'
+                            //         name: 'images/[name]-[contenthash:8].[ext]'
                             //     }
                             // }
                         }
@@ -134,6 +148,11 @@ const config = {
             }
         }),
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'styles/[name]-[contenthash:8].css',
+            chunkFilename: '[id].css',
+            ignoreOrder: false
+        }),
         new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {

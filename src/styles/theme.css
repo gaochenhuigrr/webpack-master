@@ -12,6 +12,8 @@ div {
 }
 
 body {
-    background-image: url('../assets/afterglow.jpg');
-    background-size: cover;
+    background-color: #333;
+    /* TOFIX: 打包报错 */
+    /* background-image: url('../assets/afterglow.jpg');
+    background-size: cover; */
 }
