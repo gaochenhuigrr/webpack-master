@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const config = {
     mode: 'development',
@@ -169,6 +168,11 @@ const config = {
         extensions: [
             '.js', '.json', '.jsx', '.css', '.scss'
         ]
+    },
+    // webpack4 dev环境下默认不压缩
+    // 若要完全压缩，则mode: 'production'
+    optimization: {
+        minimize: true
     }
 }
 // 先定义再导出方便更改配置
