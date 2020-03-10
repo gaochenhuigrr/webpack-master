@@ -165,7 +165,8 @@ const config = {
     resolve: {
         alias: {
             styles: path.resolve(__dirname, '../src/styles/'),
-            assets: path.resolve(__dirname, '../src/assets/')
+            assets: path.resolve(__dirname, '../src/assets/'),
+            utils: path.resolve(__dirname, '../src/utils/')
         },
         modules: [
             path.resolve(__dirname, '../src'),

@@ -1,11 +1,10 @@
 import 'styles/index'
+import * as all from './js/index'
 
-const MAX_NUM = 500
+console.log('all: ', all)
 
 const echo = () => {
-    console.log('MAX_NUM: ',MAX_NUM)
-    console.log(THREEDIMENSION)
-    console.log('env: ', process.env.NODE_ENV)
+  console.log(THREEDIMENSION)
+  console.log('env: ', process.env.NODE_ENV)
 }
-
 echo()
