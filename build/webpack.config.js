@@ -92,7 +92,7 @@ const config = {
                         loader: 'url-loader',
                         options: {
                             limit: 40960, 
-                            name: 'assets/images/[name].[contenthash:8].[ext]'
+                            name: 'images/[name].[contenthash:8].[ext]'
                             // webpack3 配置 不适用于webpack4
                             // fallback: {
                             //     loader: 'file-loader',
