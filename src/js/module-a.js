@@ -11,3 +11,6 @@ console.log(defaultExport.division(1, 6))
 console.log(defaultExport)
 
 export * from 'utils/calc'
+
+// 转发default
+export { defaultExport }
