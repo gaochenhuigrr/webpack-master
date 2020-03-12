@@ -1,0 +1,47 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  // Airbnb的编码规范是在业界非常流行的一套规范
+  // airbnb 规范在 npm 中有两个版本
+  // eslint-config-airbnb-base 包含了针对 ES6+ 代码的检查
+  // eslint-config-airbnb 在 eslint-config-airbnb-base 的基础上增加了对 react 和 jsx 语法的检查
+  // "extends": "airbnb", // eslint-config-airbnb
+  "extends": "airbnb-base", // eslint-config-airbnb-base
+  // required to lint *.vue files
+  "plugins": [
+    "html"
+  ],
+  "rules": {
+    "no-undef": [1],
+    "no-console": [0],
+    "import/no-unresolved": [0],
+    "eol-last": [0],
+    "import/newline-after-import": [0],
+    "import/prefer-default-export": [0],
+    "import/export": [0],
+    // 解决报错： `Expected linebreaks to be 'LF' but found 'CRLF'.`
+    "linebreak-style": [
+      0,
+      "error",
+      "windows"
+    ],
+    "quotes": [
+      1,
+      "single"
+    ],
+    // 数组和对象的最后一个元素后不加逗号
+    "comma-dangle": ["error", "never"],
+    "semi": [
+      0
+    ]
+  }
+}
