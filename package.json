@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "set NODE_ENV=production && webpack --config ./build/webpack.config.js",
-    "dev": "set NODE_ENV=development && webpack-dev-server --inline --color --config ./build/webpack.config.js",
+    "build": "set NODE_ENV=production && webpack --config ./build/webpack.prod.js",
+    "dev": "set NODE_ENV=development && webpack-dev-server --inline --color --config ./build/webpack.dev.js",
     "start": "npm run dev"
   },
   "keywords": [],
@@ -53,6 +53,7 @@
     "url-loader": "^3.0.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   }
 }
