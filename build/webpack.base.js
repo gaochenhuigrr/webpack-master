@@ -112,7 +112,7 @@ const config = {
       {
         from: path.resolve(__dirname, '../static'),
         to: path.resolve(__dirname, '../dist/static'),
-        ignore: ['.js']
+        ignore: ['*.js']
       }
     ]),
     new CleanWebpackPlugin(),
