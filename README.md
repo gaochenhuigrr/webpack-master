@@ -1,7 +1,7 @@
-# 1 webpack-merge
-# 2 SplitChunksPlugin
-# 3 tree-shaking
-# 4 DllPlugin
+# 1 SplitChunksPlugin
+# 2 tree-shaking
+# 3 DllPlugin
+# 4 HappyPack
 
 # eslint
 * `Expected linebreaks to be 'LF' but found 'CRLF'.` 解决方法：`"linebreak-style": [0 ,"error", "windows"]` [Why](https://www.cnblogs.com/guangzan/p/11866261.html)
@@ -85,3 +85,14 @@
 
 # mainfest
   * webpack 内部运行时，会维护一份用于管理构建代码时各个模块之间交互的表数据，webpack 官方称之为 Manifest，其中包括入口代码文件和构建出来的 bundle 文件的对应关系。可以使用WebpackManifestPlugin 插件来输出这样的一份数据。
+
+# Tree shaking
+  - 在webpack 中，只有启动了 JS 代码压缩功能（即使用 uglify）时，会做 Tree shaking 的优化。webpack 4.x 需要指定 mode 为 production，而 webpack 3.x 的话需要配置 UglifyJsPlugin。
+  - 如果你在项目中使用了 Babel 的话，要把 Babel 解析模块语法的功能关掉，在 .babelrc 配置中增加
+"modules": false 这个配置：
+  ```
+    {
+      "presets": [["env", { "modules": false }]]
+    }
+  ```
+  - 在 Babel 配置中增加 "loose": true 配置的话,可以去掉class
