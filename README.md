@@ -113,3 +113,6 @@
     * If useBuiltIns key is not specified or it is explicitly set with useBuiltIns: false in your .babelrc, add @babel/polyfill directly to the entry array in your webpack.config.js.
   ```
   - We do not recommend that you import the whole polyfill directly: either try the useBuiltIns options or import only the polyfills you need manually 
+
+  - @babel/plugin-transform-runtime
+  * A plugin that enables the re-use of Babel's injected helper code to save on codesize.
