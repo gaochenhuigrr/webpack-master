@@ -85,7 +85,9 @@ const config = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               esModule: true,
-              hmr: process.env.NODE_ENV === 'development'
+              hmr: process.env.NODE_ENV === 'development',
+              // if hmr does not work, this is a forceful method.
+              reloadAll: true
             }
           },
           'css-loader',
@@ -178,7 +180,7 @@ const config = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[hash].css',
-      ignoreOrder: false
+      ignoreOrder: false // Enable to remove warnings about conflicting order
     }),
     new webpack.HashedModuleIdsPlugin(), // 实现持久化缓存
     new webpack.HotModuleReplacementPlugin()
