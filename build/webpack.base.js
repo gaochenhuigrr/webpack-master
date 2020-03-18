@@ -136,6 +136,25 @@ const config = {
     ],
     // 避免新增默认文件，编码时使用详细的文件路径，代码会更容易解读，也有益于提高构建速度
     mainFiles: ['index']
+  },
+  optimization: {
+    sideEffects: true,
+    moduleIds: 'hashed', // fix: The vendor bundle changed because its module.id was changed.
+    runtimeChunk: 'single', // split runtime code into a separate chunk
+    splitChunks: {
+      // include all types of chunks
+      chunks: 'all',
+      // 至少被引用3次
+      // minChunks: 3
+      cacheGroups: {
+        // extract third-party libraries to a separate vendor chunk
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   }
 }
 // 先定义再导出方便更改配置
