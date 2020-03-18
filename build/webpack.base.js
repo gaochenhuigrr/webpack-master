@@ -85,7 +85,9 @@ const config = {
     // #2 Commitlint
     // 统一规范 commit 格式，让 commit 信息整整齐齐的展示 安装 commitlint 、@commitlint/cli、@commitlint/config - conventional
     // #3 stylelint 样式规范检测
-
+    new webpack.ProvidePlugin({
+      _: 'lodash'
+    }),
     new webpack.DefinePlugin({
       THREEDIMENSION: JSON.stringify('THREE BODY')
     }),
@@ -122,7 +124,7 @@ const config = {
   resolve: {
     modules: [
       path.resolve(__dirname, '../src'),
-      path.resolve(__dirname, 'node_modules') // 使用绝对路径指定 node_modules，不做过多查询
+      'node_modules'
     ],
     alias: {
       styles: path.resolve(__dirname, '../src/styles/'),

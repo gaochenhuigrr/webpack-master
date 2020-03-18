@@ -24,3 +24,5 @@ const echo = () => {
   console.log('env: ', process.env.NODE_ENV)
 }
 echo()
+
+console.log('lodash/difference: ', _.difference([2, 1], [2, 3]))

@@ -43,5 +43,9 @@
     "semi": [
       0
     ]
+  },
+  "globals": {
+    "THREEDIMENSION": true,
+    "_": true
   }
 }
