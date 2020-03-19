@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 const config = {
   entry: {
@@ -119,7 +120,13 @@ const config = {
     ]),
     new CleanWebpackPlugin(),
     // Webpack 进行默认编译时会有很多无用的信息，需要进行清理，只显示少量信息，并便于排错。
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin(),
+    new WorkboxPlugin.GenerateSW({
+    // these options encourage the ServiceWorkers to get in there fast
+    // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true
+    })
   ],
   resolve: {
     modules: [
