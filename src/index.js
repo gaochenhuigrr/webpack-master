@@ -1,7 +1,9 @@
+import Vue from 'vue'
+import App from './app.vue'
 // 引入polyfill 2种方式：
 // 推荐
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 // 不推荐
 // import '@babel/polyfill' 配合 useBuiltIns: 'usage' 使用
 // .babelrc
@@ -37,3 +39,10 @@ if ('serviceWorker' in navigator) {
     })
   })
 }
+
+// import vue
+export const app = new Vue({
+  el: '#app',
+  template: '<App />',
+  components: { App }
+})

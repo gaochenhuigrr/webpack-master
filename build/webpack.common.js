@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 const config = {
   entry: {
@@ -78,10 +79,17 @@ const config = {
             }
           }
         ]
+      },
+      {
+        test: /\.vue$/,
+        use: 'vue-loader',
+        exclude: path.resolve(__dirname, '../node_modules'),
+        include: path.resolve(__dirname, '../src')
       }
     ]
   },
   plugins: [
+    new VueLoaderPlugin(),
     // #1 happypack: 进行多线程构建，提高构建速度
     // #2 Commitlint
     // 统一规范 commit 格式，让 commit 信息整整齐齐的展示 安装 commitlint 、@commitlint/cli、@commitlint/config - conventional
@@ -134,6 +142,7 @@ const config = {
       'node_modules'
     ],
     alias: {
+      'vue$': 'vue/dist/vue.esm.js',
       styles: path.resolve(__dirname, '../src/styles/'),
       assets: path.resolve(__dirname, '../src/assets/'),
       utils: path.resolve(__dirname, '../src/utils/')
