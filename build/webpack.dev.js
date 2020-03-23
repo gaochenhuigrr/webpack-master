@@ -5,7 +5,6 @@ const { smart } = require('webpack-merge')
 const base = require('./webpack.common.js')
 
 module.exports = smart(base, {
-  mode: 'development',
   devtool: 'eval-cheap-module-source-map',
   // 热更新：
   // 1.安装webpack-dev-server

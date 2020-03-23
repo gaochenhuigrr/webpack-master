@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const WorkboxPlugin = require('workbox-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 const config = {
@@ -67,15 +66,13 @@ const config = {
           {
             loader: 'url-loader',
             options: {
-              limit: 40960,
-              name: 'images/[name].[contenthash:8].[ext]'
-              // webpack3 配置 不适用于webpack4
-              // fallback: {
-              //     loader: 'file-loader',
-              //     options: {
-              //         name: 'images/[name].[contenthash:8].[ext]'
-              //     }
-              // }
+              limit: 8192,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'images/[name].[contenthash:8].[ext]'
+                }
+              }
             }
           }
         ]
@@ -132,13 +129,7 @@ const config = {
     ]),
     new CleanWebpackPlugin(),
     // Webpack 进行默认编译时会有很多无用的信息，需要进行清理，只显示少量信息，并便于排错。
-    new FriendlyErrorsWebpackPlugin(),
-    new WorkboxPlugin.GenerateSW({
-    // these options encourage the ServiceWorkers to get in there fast
-    // and not allow any straggling "old" SWs to hang around
-      clientsClaim: true,
-      skipWaiting: true
-    })
+    new FriendlyErrorsWebpackPlugin()
   ],
   resolve: {
     modules: [
@@ -156,25 +147,6 @@ const config = {
     ],
     // 避免新增默认文件，编码时使用详细的文件路径，代码会更容易解读，也有益于提高构建速度
     mainFiles: ['index']
-  },
-  optimization: {
-    sideEffects: true,
-    moduleIds: 'hashed', // fix: The vendor bundle changed because its module.id was changed.
-    runtimeChunk: 'single', // split runtime code into a separate chunk
-    splitChunks: {
-      // include all types of chunks
-      chunks: 'all',
-      // 至少被引用3次
-      // minChunks: 3
-      cacheGroups: {
-        // extract third-party libraries to a separate vendor chunk
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
   }
 }
 // 先定义再导出方便更改配置

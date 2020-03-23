@@ -1,41 +1,27 @@
 const { smart } = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const base = require('./webpack.common.js')
 
 module.exports = smart(base, {
-  mode: 'production',
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              esModule: true,
-              hmr: process.env.NODE_ENV === 'development'
-            }
-          },
-          'css-loader',
-          'postcss-loader'
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader'],
+          publicPath: '/dist/css'
+        })
       },
       {
         test: /\.scss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              esModule: true,
-              hmr: process.env.NODE_ENV === 'development'
-            }
-          },
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
+          publicPath: '/dist/css'
+        })
       },
       // 图片压缩
       {
@@ -64,20 +50,18 @@ module.exports = smart(base, {
   },
   plugins: [
     new UglifyJsPlugin(),
-    new MiniCssExtractPlugin({
+    new ExtractTextPlugin({
       filename: '[name].[contenthash:8].css',
       chunkFilename: '[name].[hash].css',
-      publicPath: '/dist/css',
       // 踩坑： 文件名不应包含路径，否则会引起静态资源引用不到，文件放置位置应该通过publicPath配置
       // filename: 'css/[name].[contenthash:8].css',
       // chunkFilename: 'css/[name].[hash].css',
       ignoreOrder: false
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js',
+      minChunks: 3
     })
-  ],
-  // webpack4 dev环境下默认不压缩
-  // 若要完全压缩，则mode: 'production'
-  optimization: {
-    minimize: true,
-    usedExports: true // 令webpack确定每个模块使用的导出，用于去除 dead-code 等
-  }
+  ]
 })
