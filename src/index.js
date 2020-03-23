@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import ElementUI from 'element-ui'
+// import ElementUI from 'element-ui'
+import { Button, Select } from 'element-ui';
 import App from './app.vue'
 import router from './router/index'
 import store from './store/index'
@@ -24,7 +25,9 @@ import 'styles/index'
 import * as all from './js/index'
 
 // 注册
-Vue.use(ElementUI)
+// Vue.use(ElementUI)
+Vue.component(Button.name, Button)
+Vue.component(Select.name, Select)
 
 console.log('all: ', all)
 
