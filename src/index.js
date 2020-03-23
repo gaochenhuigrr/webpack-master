@@ -1,7 +1,9 @@
 import Vue from 'vue'
+import ElementUI from 'element-ui'
 import App from './app.vue'
 import router from './router/index'
 import store from './store/index'
+import 'element-ui/lib/theme-chalk/index.css'
 // 引入polyfill 2种方式：
 // 推荐
 import 'core-js/stable'
@@ -20,6 +22,9 @@ import 'regenerator-runtime/runtime'
 // }
 import 'styles/index'
 import * as all from './js/index'
+
+// 注册
+Vue.use(ElementUI)
 
 console.log('all: ', all)
 

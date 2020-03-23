@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>订单页面</h1>
-    <h2 @click="increment">{{count}}</h2>
+    <el-button type="success" plain @click="increment">{{count}}</el-button>
   </div>
 </template>
 

@@ -81,6 +81,10 @@ const config = {
         ]
       },
       {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader'
+      },
+      {
         test: /\.vue$/,
         use: 'vue-loader',
         exclude: path.resolve(__dirname, '../node_modules'),
@@ -142,7 +146,7 @@ const config = {
       'node_modules'
     ],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
+      vue$: 'vue/dist/vue.esm.js',
       styles: path.resolve(__dirname, '../src/styles/'),
       assets: path.resolve(__dirname, '../src/assets/'),
       utils: path.resolve(__dirname, '../src/utils/')
