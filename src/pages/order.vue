@@ -1,12 +1,14 @@
 <template>
   <div>
     <h1>订单页面</h1>
+    <h2 @click="increment">{{count}}</h2>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
-  name: ' ',
+  name: 'order',
   components: {},
   filters: {},
   mixins: [],
@@ -18,7 +20,9 @@ export default {
 
     }
   },
-  computed: {},
+  computed: {
+    ...mapState(['count'])
+  },
   watch: {},
   created () {
 
@@ -27,7 +31,7 @@ export default {
 
   },
   methods: {
-
+    ...mapActions(['increment'])
   }
 }
 </script>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './app.vue'
 import router from './router/index'
+import store from './store/index'
 // 引入polyfill 2种方式：
 // 推荐
 import 'core-js/stable'
@@ -46,5 +47,6 @@ export const app = new Vue({
   el: '#app',
   template: '<App />',
   components: { App },
-  router
+  router,
+  store
 })
