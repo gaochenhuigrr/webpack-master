@@ -12,6 +12,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
+import req from '../api/order/index'
 export default {
   name: 'order',
   components: {},
@@ -38,7 +39,7 @@ export default {
   methods: {
     ...mapActions(['increment']),
     getHotArticles () {
-      axios.post('https://web-api.juejin.im/query', {
+      const payload = {
         operationName: '',
         query: '',
         variables:{
@@ -51,12 +52,9 @@ export default {
               id: '21207e9ddb1de777adeaca7a2fb38030'
           }
         }
-      }, {
-        headers: {'X-Agent': 'Juejin/Web'},
-        'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH',
-        'Access-Control-Allow-Origin': '*'
-      }).then(res => {
-        this.articles = res.data.data.articleFeed.items.edges
+      }
+      req('getArticles', payload).then(res => {
+        this.articles = res.data.articleFeed.items.edges
       })
     },
     jump (url) {
