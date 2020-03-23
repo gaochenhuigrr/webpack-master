@@ -4,6 +4,7 @@
     <ul v-if="roles.length">
         <li v-for="(role, i) in roles" :key="i">{{role}}</li>
     </ul>
+    <router-view></router-view>
   </div>
 </template>
 

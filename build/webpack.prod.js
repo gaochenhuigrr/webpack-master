@@ -77,6 +77,7 @@ module.exports = smart(base, {
   // webpack4 dev环境下默认不压缩
   // 若要完全压缩，则mode: 'production'
   optimization: {
-    minimize: true
+    minimize: true,
+    usedExports: true // 令webpack确定每个模块使用的导出，用于去除 dead-code 等
   }
 })
