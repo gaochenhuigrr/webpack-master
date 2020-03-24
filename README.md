@@ -116,3 +116,42 @@
 
   - @babel/plugin-transform-runtime
   * A plugin that enables the re-use of Babel's injected helper code to save on codesize.
+
+# happypack (等同于 thread-loader)
+* 对file-loader、url-loader 支持的不友好，所以不建议对该loader使用
+```
+const HappyPack = require('happypack')
+const happyThreadPool = HappyPack.ThreadPool({ size: 5 })
+
+module: {
+  rules: [
+    {
+      test: /\.js$/,
+      //把对.js 的文件处理交给id为happyBabel 的HappyPack 的实例执行
+      loader: 'happypack/loader?id=happyBabel',
+      include: [resolve('src'), resolve('test')]
+    }
+  ]
+}
+
+plugins: [
+  // ** 代表必填
+  new HappyPack({
+   ** id: 'happyBabel',
+    // Number 代表开启几个子进程去处理这一类型的文件，默认是3个
+    threads: 3,
+    // 共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多
+   ** threadPool: happyThreadPool,
+    // 是否允许 HappyPack 输出日志，默认是 true
+    verbose: true,
+    // Boolean 启用debug 用于故障排查。默认 false
+    debug: true,
+   ** loaders: [{
+      loader: 'babel-loader',
+      options: {
+        cacheDirectory: true
+      }
+    }]
+  })
+]
+```
