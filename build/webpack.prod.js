@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const { smart } = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -63,6 +64,10 @@ module.exports = smart(base, {
     ]
   },
   plugins: [
+    new webpack.DllReferencePlugin({
+      manifest: require('../dist/vendor-manifest.json'),
+      context: __dirname
+    }),
     new UglifyJsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css',
