@@ -11,16 +11,14 @@ module.exports = smart(base, {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader'],
-          publicPath: '/dist/css'
+          use: ['css-loader', 'postcss-loader']
         })
       },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader', 'sass-loader'],
-          publicPath: '/dist/css'
+          use: ['css-loader', 'postcss-loader', 'sass-loader']
         })
       },
       // 图片压缩

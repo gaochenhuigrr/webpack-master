@@ -116,3 +116,8 @@
 
   - @babel/plugin-transform-runtime
   * A plugin that enables the re-use of Babel's injected helper code to save on codesize.
+
+# webpack3 vs webpack4
+- CommonsChunkPlugin -> SplitChunksPlugin
+- ExtractTextWebpackPlugin -> MiniCssExtractPlugin
+- url-loader file-loader 写法
