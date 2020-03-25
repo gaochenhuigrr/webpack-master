@@ -93,6 +93,7 @@ const config = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     // #1 happypack: 进行多线程构建，提高构建速度
     // #2 Commitlint
@@ -128,9 +129,12 @@ const config = {
         from: path.resolve(__dirname, '../static'),
         to: path.resolve(__dirname, '../dist/static'),
         ignore: ['*.js']
+      },
+      {
+        from: path.resolve(__dirname, '../dll'),
+        to: path.resolve(__dirname, '../dist/dll')
       }
     ]),
-    new CleanWebpackPlugin(),
     // Webpack 进行默认编译时会有很多无用的信息，需要进行清理，只显示少量信息，并便于排错。
     new FriendlyErrorsWebpackPlugin(),
     new WorkboxPlugin.GenerateSW({
