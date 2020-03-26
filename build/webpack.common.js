@@ -17,14 +17,14 @@ const config = {
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|jsx)$/,
-        loader: 'eslint-loader',
-        exclude: [
-          path.join(__dirname, '../node_modules')
-        ]
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.(js|jsx)$/,
+      //   loader: 'eslint-loader',
+      //   exclude: [
+      //     path.join(__dirname, '../node_modules')
+      //   ]
+      // },
       {
         test: /\.js$/,
         use: {
@@ -40,10 +40,10 @@ const config = {
           path.resolve(__dirname, '../node_modules')
         ]
       },
-      {
-        test: /\.html$/,
-        loader: 'html-loader'
-      },
+      // {
+      //   test: /\.html$/,
+      //   loader: 'html-loader'
+      // },
       {
         test: /\.css$/,
         use: [
