@@ -155,3 +155,12 @@ plugins: [
   })
 ]
 ```
+
+# 必知必会
+* webpack 是 dependencies
+* webpack-cli 是 devDependencies
+* package-lock.json (npm version >= 5.0.0）
+* npx (npm version >= 5.2.0 集成了npx)
+  - 运行node_modules中的包
+  - 避免全局安装包，当local和global都不存在时，会临时下载，使用完毕后删除
+  - 运行远程仓库中的包
