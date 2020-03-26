@@ -1,11 +1,28 @@
+// babel总结：
+// 第一步
+// babel-loader 打通webpack和babel
+// @babel/core babel核心模块
+
+// 第二步
+// @babel/preset-env 转换ES6语法 但是不转换新增的api ("useBuiltIns": "usage" 只编译项目中用到的api，不会打包多余的代码进去)
+// @babel/polyfill 转换ES6新增的api
+
+// 注意： 
+// 如果写的是业务代码，用上面配置就可以 （会污染全局环境）
+// 如果写的是库的代码 （通过闭包形式注入，不会污染全局环境），就要用 @babel/plugin-transform-runtime(配置中使用{corejs: 2},则要安装@babel/runtime-corejs2) + @babel/runtime + @babel/runtime-corejs2
 {
 	"presets": [
     [
       "@babel/preset-env",
+      // 第一个参数是用的preset
       {
+        "targets": {
+          "chrome": "67"
+        },
         "modules": false,
 				"useBuiltIns": "usage"
       }
+      // 第二个参数是preset的配置
     ]
   ],
   "plugins": [
