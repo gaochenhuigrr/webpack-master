@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "sideEffects": [
-    "../src/**/*.css",
-    "../src/**/*.scss"
+    "*.css",
+    "*.scss"
   ],
   "main": "index.js",
   "scripts": {

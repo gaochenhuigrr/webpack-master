@@ -28,5 +28,8 @@ module.exports = smart(base, {
     new webpack.NamedModulesPlugin(), // 用于启动 HMR 时可以显示模块的相对路径
     new webpack.HotModuleReplacementPlugin(),
     new webpack.HashedModuleIdsPlugin() // 实现持久化缓存
-  ]
+  ],
+  optimization: {
+    usedExports: true
+  }
 })

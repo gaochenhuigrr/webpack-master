@@ -196,3 +196,13 @@ optimization: {
 # devtool
 - development: devtool: 'eval-cheap-module-source-map'
 - production: devtool: 'cheap-module-source-map'
+
+# Tree Shaking
+- 只支持 ES module， 不支持 commonjs
+
+- development: 会标记出未使用的代码，但是还是会引入（防止影响source-map，导致报错位置不对应）
+- production: 会清除dead code （只需配置sideEffects，usedExports默认已配置）
+
+- usage:
+  * 在package.json中配置 sideEffects
+  * 在webpack配置文件中配置 optimization: { usedExports: true }
