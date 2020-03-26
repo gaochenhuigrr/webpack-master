@@ -172,3 +172,23 @@ plugins: [
 - lodash-es 
 - rimraf 删除文件
 - moment-timezone-data-webpack-plugin 根据时间范围压缩moment包
+
+# webpack3 VS webpack4
+- been removed in webpack v4
+  * NoEmitOnErrorsPlugin
+  * ModuleConcatenationPlugin
+  * NamedModulesPlugin
+  * CommonsChunkPlugin
+
+- subsititute
+```
+optimization: {
+    namedModules: true, // NamedModulesPlugin()
+    splitChunks: { // CommonsChunkPlugin()
+        name: 'vendor',
+        minChunks: 2
+    },
+    noEmitOnErrors: true, // NoEmitOnErrorsPlugin
+    concatenateModules: true //ModuleConcatenationPlugin
+}
+```

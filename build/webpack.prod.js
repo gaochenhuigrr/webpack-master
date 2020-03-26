@@ -4,9 +4,11 @@ const { smart } = require('webpack-merge')
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 const base = require('./webpack.common.js')
+const smp = new SpeedMeasurePlugin()
 
-module.exports = smart(base, {
+const config = smart(base, {
   mode: 'production',
   module: {
     rules: [
@@ -89,3 +91,4 @@ module.exports = smart(base, {
     usedExports: true // 令webpack确定每个模块使用的导出，用于去除 dead-code 等
   }
 })
+module.exports = smp.wrap(config)
