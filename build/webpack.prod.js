@@ -1,9 +1,9 @@
 const webpack = require('webpack')
 const path = require('path')
 const { smart } = require('webpack-merge')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const base = require('./webpack.common.js')
 
 module.exports = smart(base, {
@@ -68,7 +68,7 @@ module.exports = smart(base, {
     new webpack.DllReferencePlugin({
       manifest: require(path.resolve(__dirname, '../dll/vendor-manifest.json'))
     }),
-    new UglifyJsPlugin(),
+    // new UglifyJsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css',
       chunkFilename: '[name].[hash].css',
@@ -77,10 +77,10 @@ module.exports = smart(base, {
       // filename: 'css/[name].[contenthash:8].css',
       // chunkFilename: 'css/[name].[hash].css',
       ignoreOrder: false
-    }),
-    new BundleAnalyzerPlugin({
-      generateStatsFile: true // 是否生成stats.json文件
     })
+    // new BundleAnalyzerPlugin({
+    //   generateStatsFile: true // 是否生成stats.json文件
+    // })
   ],
   // webpack4 dev环境下默认不压缩
   // 若要完全压缩，则mode: 'production'

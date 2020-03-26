@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:prod": "set NODE_ENV=production && webpack --config ./build/webpack.prod.js",
+    "build": "set NODE_ENV=production && webpack --config ./build/webpack.prod.js",
     "build:dll": "webpack --config ./build/webpack.dll.config.js",
     "dev": "set NODE_ENV=development && webpack-dev-server --inline --color --config ./build/webpack.dev.js",
     "start": "npm run dev",

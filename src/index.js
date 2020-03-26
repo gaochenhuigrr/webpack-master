@@ -1,6 +1,7 @@
 import Vue from 'vue'
 // import ElementUI from 'element-ui'
 import { Button, Select } from 'element-ui';
+import { difference } from 'lodash'
 import App from './app.vue'
 import router from './router/index'
 import store from './store/index'
@@ -37,18 +38,18 @@ const echo = () => {
 }
 echo()
 
-console.log('lodash/difference: ', _.difference([2, 1], [2, 3]))
+console.log('lodash/difference: ', difference([2, 1], [2, 3]))
 
 // PWA ServiceWorker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-      console.log('SW registered: ', registration)
-    }).catch((registrationError) => {
-      console.log('SW registration failed: ', registrationError)
-    })
-  })
-}
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+//       console.log('SW registered: ', registration)
+//     }).catch((registrationError) => {
+//       console.log('SW registration failed: ', registrationError)
+//     })
+//   })
+// }
 
 // import vue
 export const app = new Vue({
