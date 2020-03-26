@@ -8,10 +8,10 @@ import store from './store/index'
 import 'element-ui/lib/theme-chalk/index.css'
 // 引入polyfill 2种方式：
 // 推荐
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
+// import 'core-js/stable'
+// import 'regenerator-runtime/runtime'
 // 不推荐
-// import '@babel/polyfill' 配合 useBuiltIns: 'usage' 使用
+// import '@babel/polyfill' // 在webpack4中配置了{useBuiltIns: 'usage'}则不用显式引入poly fill
 // .babelrc
 // {
 //   presets: [
