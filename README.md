@@ -192,3 +192,7 @@ optimization: {
     concatenateModules: true //ModuleConcatenationPlugin
 }
 ```
+
+# devtool
+- development: devtool: 'eval-cheap-module-source-map'
+- production: devtool: 'cheap-module-source-map'

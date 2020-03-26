@@ -10,6 +10,7 @@ const smp = new SpeedMeasurePlugin()
 
 const config = smart(base, {
   mode: 'production',
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {
