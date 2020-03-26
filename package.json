@@ -2,6 +2,10 @@
   "name": "demo",
   "version": "1.0.0",
   "description": "",
+  "sideEffects": [
+    "../src/**/*.css",
+    "../src/**/*.scss"
+  ],
   "main": "index.js",
   "scripts": {
     "build": "set NODE_ENV=production && webpack --config ./build/webpack.prod.js",

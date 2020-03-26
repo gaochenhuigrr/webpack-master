@@ -164,3 +164,11 @@ plugins: [
   - 运行node_modules中的包
   - 避免全局安装包，当local和global都不存在时，会临时下载，使用完毕后删除
   - 运行远程仓库中的包
+  
+# utility package
+- terser-webpack-plugin (webpack-deep-scope-plugin) 辅助tree-shaking
+- speed-measure-webpack-plugin 分析打包速度
+- purgecss-webpack-plugin 去除无用css
+- lodash-es 
+- rimraf 删除文件
+- moment-timezone-data-webpack-plugin 根据时间范围压缩moment包

@@ -30,5 +30,9 @@ module.exports = {
       path: path.resolve(__dirname, '../dll/[name]-manifest.json'),
       name: '[name]_library'
     })
-  ]
+  ],
+  optimization: {
+    minimize: true,
+    usedExports: true // 令webpack确定每个模块使用的导出，用于去除 dead-code 等
+  }
 }
