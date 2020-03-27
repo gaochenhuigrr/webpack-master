@@ -5,7 +5,7 @@ h1 {
 div {
     width: 200px;
     height: 200px;
-    background-image: url(../assets/girl.jpg);
+    background-image: url(../assets/lion.jpg);
     background-size: cover;
     border-radius: 50%;
     margin: 50px auto;
@@ -14,6 +14,6 @@ div {
 body {
     background-color: #333;
     /* TOFIX: 打包报错 */
-    background-image: url(../assets/girl.jpg);
+    background-image: url(../assets/lion.jpg);
     background-size: cover;
 }
