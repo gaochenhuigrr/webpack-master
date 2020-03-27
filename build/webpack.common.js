@@ -113,7 +113,7 @@ const CONFIG = {
     new HtmlWebpackPlugin({
       template: resolve('src/index.html'),
       filename: 'index.html',
-      title: 'hmtl webpack plugin title',
+      title: 'wp master',
       // 打包好的资源注入到html的位置 default: 'body'
       // true | 'body' body结束标签前
       // 'head' head结束标签前
