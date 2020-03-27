@@ -84,9 +84,8 @@ const PROD_CONFIG = {
     }),
     // new UglifyJsPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash:8].css',
-      chunkFilename: '[name].[hash].css',
-      publicPath: '/dist/css',
+      filename: 'css/[name].[contenthash:8].css',
+      chunkFilename: 'css/[name].[hash].css',
       // 踩坑： 文件名不应包含路径，否则会引起静态资源引用不到，文件放置位置应该通过publicPath配置
       // filename: 'css/[name].[contenthash:8].css',
       // chunkFilename: 'css/[name].[hash].css',

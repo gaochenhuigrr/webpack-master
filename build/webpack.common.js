@@ -56,6 +56,9 @@ const CONFIG = {
           'style-loader',
           'css-loader',
           'postcss-loader'
+        ],
+        exclude: [
+          resolve('node_modules')
         ]
       },
       {
