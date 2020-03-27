@@ -1,14 +1,25 @@
+// ------ Global Objects ------
 const webpack = require('webpack')
 const path = require('path')
 const { smart } = require('webpack-merge')
+
+// ------ Plugins ------
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
-const base = require('./webpack.common.js')
+
+// ------ Constants ------
+const COMMON_CONFIG = require('./webpack.common.js')
 const smp = new SpeedMeasurePlugin()
 
-const config = smart(base, {
+// ------ Functions ------
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+// ------ Configuration ------
+const PROD_CONFIG = {
   mode: 'production',
   devtool: 'cheap-module-source-map',
   module: {
@@ -69,7 +80,7 @@ const config = smart(base, {
   },
   plugins: [
     new webpack.DllReferencePlugin({
-      manifest: require(path.resolve(__dirname, '../dll/vendor-manifest.json'))
+      manifest: require(resolve('dll/vendor-manifest.json'))
     }),
     // new UglifyJsPlugin(),
     new MiniCssExtractPlugin({
@@ -91,5 +102,6 @@ const config = smart(base, {
     minimize: true,
     usedExports: true // 令webpack确定每个模块使用的导出，用于去除 dead-code 等
   }
-})
-module.exports = smp.wrap(config)
+}
+
+module.exports = smp.wrap(smart(COMMON_CONFIG, PROD_CONFIG))

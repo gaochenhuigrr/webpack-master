@@ -1,10 +1,18 @@
+// ------ Global Objects ------
 const webpack = require('webpack')
 const path = require('path')
 const { smart } = require('webpack-merge')
 
-const base = require('./webpack.common.js')
+// ------ Constants ------
+const COMMON_CONFIG = require('./webpack.common.js')
 
-module.exports = smart(base, {
+// ------ Functions ------
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+// ------ Configuration ------
+const DEV_CONFIG = {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
   // 热更新：
@@ -12,10 +20,10 @@ module.exports = smart(base, {
   // 2.打包命令 webpack --> webpack-dev-server
   // 3.webpack 配置文件中配置 devServer
   devServer: {
-    contentBase: path.join(__dirname, '../dist/'),
+    contentBase: resolve('dist'),
     compress: true,
     hot: true,
-    port: 8000,
+    port: 3000,
     // 自动打开浏览器
     open: true,
     // 显示ccompiler errors or warnings
@@ -32,4 +40,6 @@ module.exports = smart(base, {
   optimization: {
     usedExports: true
   }
-})
+}
+
+module.exports = smart(COMMON_CONFIG, DEV_CONFIG)

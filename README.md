@@ -172,6 +172,7 @@ plugins: [
 - lodash-es 
 - rimraf 删除文件
 - moment-timezone-data-webpack-plugin 根据时间范围压缩moment包
+- sass-resources-loader (This loader will @import your SASS resources into every required SASS module)
 
 # webpack3 VS webpack4
 - been removed in webpack v4
@@ -206,3 +207,23 @@ optimization: {
 - usage:
   * 在package.json中配置 sideEffects
   * 在webpack配置文件中配置 optimization: { usedExports: true }
+
+# splitChunks
+- cacheGroups 当inital(同步引入的依赖)匹配所有条件时，会进入cacheGroups匹配，符合同一个条件的包会打包进同一个文件
+
+# chunk
+- 打包完成后的dist中的一个文件就是一个chunk
+
+# 打包分析
+- [analyse](https://github.com/webpack/analyse)
+- 1.生成打包过程描述文件 `webpack --profile --json > stats.json`
+- 2.根据stats.json文件可视化分析打包过程 [analyse](http://webpack.github.io/analyse/)
+- 其他分析插件 https://webpack.js.org/guides/code-splitting/#bundle-analysis
+
+# 查看页面代码利用率
+- 在控制台 ctrl+shift+p -> coverage
+# Prefetching/Preloading
+- [doc](https://webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules)
+
+# 踩坑
+- 使用PWA(WorkboxPlugin)后,访问同一域名会出现无法正常访问 解决方案：　换个端口　（后续研究如何清除缓存）

@@ -1,19 +1,28 @@
+// ------ Global Objects ------
 const webpack = require('webpack')
 const path = require('path')
+
+// ------ Plugins ------
+const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 // const WorkboxPlugin = require('workbox-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
 
-const config = {
+// ------ Functions ------
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+// ------ Configuration ------
+const CONFIG = {
   entry: {
-    main: path.resolve(__dirname, '../src/index.js')
+    main: resolve('src/index.js')
   },
   output: {
     filename: 'js/[name].[hash:8].js',
-    path: path.resolve(__dirname, '../dist/')
+    path: resolve('dist/')
   },
   module: {
     rules: [
@@ -33,11 +42,8 @@ const config = {
             presets: ['@babel/preset-env']
           }
         },
-        include: [
-          path.resolve(__dirname, '../src')
-        ],
         exclude: [
-          path.resolve(__dirname, '../node_modules')
+          resolve('node_modules')
         ]
       },
       // {
@@ -87,8 +93,7 @@ const config = {
       {
         test: /\.vue$/,
         use: 'vue-loader',
-        exclude: path.resolve(__dirname, '../node_modules'),
-        include: path.resolve(__dirname, '../src')
+        include: resolve('src')
       }
     ]
   },
@@ -106,7 +111,7 @@ const config = {
       THREEDIMENSION: JSON.stringify('THREE BODY')
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../src/index.html'),
+      template: resolve('src/index.html'),
       filename: 'index.html',
       title: 'hmtl webpack plugin title',
       // 打包好的资源注入到html的位置 default: 'body'
@@ -126,13 +131,13 @@ const config = {
     }),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../static'),
-        to: path.resolve(__dirname, '../dist/static'),
+        from: resolve('static'),
+        to: resolve('dist/static'),
         ignore: ['*.js']
       },
       {
-        from: path.resolve(__dirname, '../dll'),
-        to: path.resolve(__dirname, '../dist/dll')
+        from: resolve('dll'),
+        to: resolve('dist/dll')
       }
     ]),
     // Webpack 进行默认编译时会有很多无用的信息，需要进行清理，只显示少量信息，并便于排错。
@@ -146,14 +151,14 @@ const config = {
   ],
   resolve: {
     modules: [
-      path.resolve(__dirname, '../src'),
+      resolve('src'),
       'node_modules'
     ],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      styles: path.resolve(__dirname, '../src/styles/'),
-      assets: path.resolve(__dirname, '../src/assets/'),
-      utils: path.resolve(__dirname, '../src/utils/')
+      styles: resolve('src/styles/'),
+      assets: resolve('src/assets/'),
+      utils: resolve('src/utils/')
     },
     extensions: [
       '.js', '.json', '.jsx', '.css', '.scss'
@@ -162,7 +167,6 @@ const config = {
     mainFiles: ['index']
   },
   optimization: {
-    sideEffects: true,
     moduleIds: 'hashed', // fix: The vendor bundle changed because its module.id was changed.
     runtimeChunk: 'single', // split runtime code into a separate chunk
     splitChunks: {
@@ -182,4 +186,4 @@ const config = {
   }
 }
 // 先定义再导出方便更改配置
-module.exports = config
+module.exports = CONFIG
