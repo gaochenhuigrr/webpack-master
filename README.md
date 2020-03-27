@@ -227,3 +227,28 @@ optimization: {
 
 # 踩坑
 - 使用PWA(WorkboxPlugin)后,访问同一域名会出现无法正常访问 解决方案：　换个端口　（后续研究如何清除缓存）
+
+# providePlugin
+- e.g.
+- $: 'jquery' 当在模块中遇到 $ 符号时，便会自动帮忙在该模块中引入jquery
+
+# imports-loader
+- allow you use modules that depend on specific global variables
+
+# npm发包踩坑
+```
+// Error
+npm ERR! code E403
+npm ERR! 403 403 Forbidden - PUT https://registry.npm.taobao.org/npm-replace-img - [no_perms] Private mode enable, only admin can publish this module
+npm ERR! 403 In most cases, you or one of your dependencies are requesting
+npm ERR! 403 a package version that is forbidden by your security policy.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\zhangle\AppData\Roaming\npm-cache\_logs\2020-03-18T11_51_49_786Z-debug.log
+
+// Resolution
+- 1. 检查仓库是否被设成了淘宝镜像库 'npm config get registry'
+- 2. 如过镜像显示是淘宝，需要设回原仓库 'npm config set registry=http://registry.npmjs.org'
+- 3. 重新登录NPM账号，再次发布 'npm login' (如未登录过账号，则添加用户 'npm adduser')
+- 4. 如果需要淘宝镜像，重新设置 'npm config set registry=https://registry.npm.taobao.org/'
+```
