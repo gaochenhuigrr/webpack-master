@@ -255,3 +255,11 @@ npm ERR!     C:\Users\zhangle\AppData\Roaming\npm-cache\_logs\2020-03-18T11_51_4
 - 3. 重新登录NPM账号，再次发布 'npm login' (如未登录过账号，则添加用户 'npm adduser')
 - 4. 如果需要淘宝镜像，重新设置 'npm config set registry=https://registry.npm.taobao.org/'
 ```
+
+# eslint
+- install eslint
+- 生成eslint文件： `npx eslint --init`
+- 3种使用方式
+  * 1. `npx eslint src(文件夹目录)` 在命令行中提示错误
+  * 2. 安装 eslint 插件， 配合 .eslintrc 文件进行检查， 在编辑器中提示错误
+  * 3. 配置 eslint-loader + 在devServer中配置 overlay 在浏览器中提示错误
