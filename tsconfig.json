@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "noImplicitReturns": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es5",
+    "allowJs": false,
+    "types": ["node"],
+    "lib": [
+      "es2015",
+      "es2015.promise",
+      "dom"
+    ]
+  },
+  "include": [
+      "./src/**/*"
+  ]
+}

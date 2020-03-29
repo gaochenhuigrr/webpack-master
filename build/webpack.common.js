@@ -48,6 +48,15 @@ const CONFIG = {
           resolve('node_modules')
         ]
       },
+      {
+        test: /\.tsx?$/,
+        use: [{
+          loader: 'ts-loader'
+        }],
+        exclude: [
+          resolve('node_modules')
+        ]
+      },
       // {
       //   test: /\.html$/,
       //   loader: 'html-loader'

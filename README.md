@@ -226,7 +226,10 @@ optimization: {
 - [doc](https://webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules)
 
 # 踩坑
-- 使用PWA(WorkboxPlugin)后,访问同一域名会出现无法正常访问 解决方案：　换个端口　（后续研究如何清除缓存）
+- 使用PWA(WorkboxPlugin)后,访问同一域名会出现无法正常访问 
+- 解决方案：
+  * 1.换个端口　
+  * 2.在控制台中 application -> Service Workers -> unregister 
 
 # providePlugin
 - e.g.
