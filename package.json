@@ -8,6 +8,7 @@
   ],
   "main": "index.js",
   "scripts": {
+    "debug": "node --inspect --inspect-brk node_modules/webpack/bin/webpack.js --config ./build/webpack.dev.js",
     "build": "set NODE_ENV=production && webpack --config ./build/webpack.prod.js",
     "build:dll": "webpack --config ./build/webpack.dll.config.js",
     "dev": "set NODE_ENV=development && webpack-dev-server --inline --color --config ./build/webpack.dev.js",
