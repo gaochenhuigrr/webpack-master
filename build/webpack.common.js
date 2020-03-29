@@ -8,6 +8,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+
+const FinishNotifyPlugin = require('../plugins/finish-notify-plugin')
 // const WorkboxPlugin = require('workbox-webpack-plugin')
 
 // ------ Functions ------
@@ -101,6 +103,9 @@ const CONFIG = {
     ]
   },
   plugins: [
+    new FinishNotifyPlugin({
+      name: 'FinishNotifyPlugin'
+    }),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     // #1 happypack: 进行多线程构建，提高构建速度
