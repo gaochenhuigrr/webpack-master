@@ -173,6 +173,7 @@ plugins: [
 - rimraf 删除文件
 - moment-timezone-data-webpack-plugin 根据时间范围压缩moment包
 - sass-resources-loader (This loader will @import your SASS resources into every required SASS module)
+- add-asset-html-webpack-plugin(将静态文件添加到html文件中，配合dllPlugin使用)
 
 # webpack3 VS webpack4
 - been removed in webpack v4
@@ -263,3 +264,15 @@ npm ERR!     C:\Users\zhangle\AppData\Roaming\npm-cache\_logs\2020-03-18T11_51_4
   * 1. `npx eslint src(文件夹目录)` 在命令行中提示错误
   * 2. 安装 eslint 插件， 配合 .eslintrc 文件进行检查， 在编辑器中提示错误
   * 3. 配置 eslint-loader + 在devServer中配置 overlay 在浏览器中提示错误
+
+# 性能优化
+- 1. 保持 Node, npm 版本处于最新版本
+- 2. 在尽可能少的模块上使用loader
+- 3. plugin 尽可能精简且可靠（使用官方推荐的plugin）
+- 4.
+- 5. 使用 dllPlugin
+- 6. 控制包文件大小
+- 7. thread-loader, happypack, parallel-webpack 多进程打包
+- 8. 合理使用sourcemap
+- 9. 结合stats分析打包结果（webpack-bundle-analyzer、speed-measure-webpack-plugin）
+- 10. 开发环境你无用插件剔除

@@ -55,6 +55,27 @@ const DEV_CONFIG = {
       }
     }
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
+        ]
+      }
+    ]
+  },
   plugins: [
     new webpack.NamedModulesPlugin(), // 用于启动 HMR 时可以显示模块的相对路径
     new webpack.HotModuleReplacementPlugin(),

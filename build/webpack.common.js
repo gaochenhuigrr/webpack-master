@@ -62,26 +62,6 @@ const CONFIG = {
       //   loader: 'html-loader'
       // },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader'
-        ],
-        exclude: [
-          resolve('node_modules')
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
-      },
-      {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: [
           {
