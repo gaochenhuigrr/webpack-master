@@ -10,6 +10,9 @@ module.exports = {
 
     // vendor: ['vue', 'vue-router', 'vuex', 'element-ui', 'axios', 'lodash']
     vendor: ['vue/dist/vue.esm.js', 'vue-router', 'vuex', 'element-ui', 'axios', 'lodash']
+    // vue: ['vue/dist/vue.esm.js', 'vue-router', 'vuex'],
+    // ui: ['element-ui'],
+    // util: ['axios', 'lodash']
   },
   output: {
     path: path.resolve(__dirname, '../dll/'),

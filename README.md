@@ -275,4 +275,21 @@ npm ERR!     C:\Users\zhangle\AppData\Roaming\npm-cache\_logs\2020-03-18T11_51_4
 - 7. thread-loader, happypack, parallel-webpack 多进程打包
 - 8. 合理使用sourcemap
 - 9. 结合stats分析打包结果（webpack-bundle-analyzer、speed-measure-webpack-plugin）
-- 10. 开发环境你无用插件剔除
+- 10. 开发环境你无用插件剔除f
+
+# chunk VS bundle （Chunk是过程中的代码块，Bundle是结果的代码块）
+### 区别
+- Chunk是Webpack**打包过程中**，一堆module的集合 (有多个入口文件，会产出多条打包路径，一条路径就会形成一个Chunk)
+- Bundle是我们**最终输出**的一个或多个打包文件(大多数情况下，一个Chunk会生产一个Bundle。但有时候也不完全是一对一的关系，比如把 devtool配置成'source-map'。只有一个入口文件，也不配置代码分割，这样的配置，会产生一个Chunk，但是会产生两个bundle)
+```
+/**
+ * A Chunk is a unit of encapsulation for Modules.
+ * Chunks are "rendered" into bundles that get emitted when the build completes.
+ */
+class Chunk { 
+}
+```
+### 产生Chunk的三种途径（4个规则限制）
+- entry入口
+- 异步加载模块
+- 代码分割（code spliting）

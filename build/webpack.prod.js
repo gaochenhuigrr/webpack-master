@@ -1,6 +1,7 @@
 // ------ Global Objects ------
 const webpack = require('webpack')
 const path = require('path')
+const fs = require('fs')
 const { smart } = require('webpack-merge')
 
 // ------ Plugins ------
@@ -19,6 +20,33 @@ function resolve(dir) {
 }
 
 // ------ Configuration ------
+
+const plugins = [
+  // new UglifyJsPlugin(),
+  new MiniCssExtractPlugin({
+    filename: 'css/[name].[contenthash:8].css',
+    chunkFilename: 'css/[name].[hash].css',
+    // 踩坑： 文件名不应包含路径，否则会引起静态资源引用不到，文件放置位置应该通过publicPath配置
+    // filename: 'css/[name].[contenthash:8].css',
+    // chunkFilename: 'css/[name].[hash].css',
+    ignoreOrder: false
+  })
+  // new BundleAnalyzerPlugin({
+  //   generateStatsFile: true // 是否生成stats.json文件
+  // })
+]
+
+
+const fileList = fs.readdirSync('dll')
+fileList.forEach((file) => {
+  if (/.*manifest\.json$/.test(file)) {
+    plugins.push(new webpack.DllReferencePlugin({
+      manifest: require(resolve(`dll/${file}`))
+    }))
+  }
+})
+console.log('plugins: ', plugins)
+
 const PROD_CONFIG = {
   mode: 'production',
   devtool: 'cheap-module-source-map',
@@ -78,23 +106,7 @@ const PROD_CONFIG = {
       // }
     ]
   },
-  plugins: [
-    new webpack.DllReferencePlugin({
-      manifest: require(resolve('dll/vendor-manifest.json'))
-    }),
-    // new UglifyJsPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].[hash].css',
-      // 踩坑： 文件名不应包含路径，否则会引起静态资源引用不到，文件放置位置应该通过publicPath配置
-      // filename: 'css/[name].[contenthash:8].css',
-      // chunkFilename: 'css/[name].[hash].css',
-      ignoreOrder: false
-    })
-    // new BundleAnalyzerPlugin({
-    //   generateStatsFile: true // 是否生成stats.json文件
-    // })
-  ],
+  plugins,
   // webpack4 dev环境下默认不压缩
   // 若要完全压缩，则mode: 'production'
   optimization: {
